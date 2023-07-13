@@ -10,3 +10,9 @@
     ```shell
     python main.py
     ```
+
+## Login to admin dashboard
+1. Access [](http://localhost:5000)
+2. Use email and password to login:
+   - Email: `admin@admin.com`
+   - Password: `123456`
