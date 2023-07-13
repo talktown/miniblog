@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login</title>
+    {% include 'common/head.html' %}
+</head>
+    <body>
+        <h1 class="my-5 text-center">
+            {% if post %}
+                Edit Post
+            {% else %}
+                Add Post
+            {% endif %}
+        </h1>
+
+        <div class="container mt-5 d-flex justify-content-center">
+            <form class="w-100" method="post" action="/admin/posts/save">
+                <input type="hidden" name="id" value="{{ post.id if post else 0 }}">
+                <div class="row mb-3">
+                    <label for="title" class="col-sm-2 col-form-label">Title</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="title" class="form-control" id="title" value="{{ post.title if post else '' }}">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="content" class="col-sm-2 col-form-label">Content</label>
+                    <div class="col-sm-10">
+                        <textarea id="content" name="content" class="form-control">{{ post.content if post else ''}}</textarea>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-sm-10 offset-sm-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="enabled">
+                            <label class="form-check-label" for="enabled">
+                                Enabled?
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Save</button>
+                <a type="button" class="btn btn-secondary" href="/admin">Back</a>
+            </form>
+        </div>
+
+        {% include 'common/script.html' %}
+    </body>
+</html>

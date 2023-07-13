@@ -1,0 +1,7 @@
+.idea/
+__pycache__/
+venv/
+*.iml
+*.pyc
+.DS_Store
+data/db.sqlite3

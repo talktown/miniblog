@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login</title>
+    {% include 'common/head.html' %}
+</head>
+    <body>
+        <h1 class="my-5 text-center">Post Management</h1>
+
+        <div class="container">
+            <a class="btn btn-primary" href="/admin/posts/add">Add</a>
+        </div>
+
+        <div class="container mt-5 d-flex justify-content-center">
+
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>title</th>
+                        <th>content</th>
+                        <th>Operation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for post in posts %}
+                    <tr>
+                        <td>{{ post.id }}</td>
+                        <td>{{ post.title }}</td>
+                        <td>{{ post.content }}</td>
+                        <td>
+                            <a href="/admin/posts/edit/{{ post.id }}">Edit</a>
+                            <a href="/admin/posts/delete/{{ post.id }}">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                <li class="page-item {% if page <= 1 %}disabled{% endif %}">
+                    <a class="page-link" href="?page={{ page - 1 }}">Prev</a>
+                </li>
+                <li class="page-item disabled">
+                    <a class="page-link" href="#">{{ page }} / {{ total_page }} pages, {{ total }} items</a>
+                </li>
+                <li class="page-item {% if page >= total_page %}disabled{% endif %}">
+                    <a class="page-link" href="?page={{ page + 1 }}">Next</a>
+                </li>
+            </ul>
+        </nav>
+
+        {% include 'common/script.html' %}
+    </body>
+</html>

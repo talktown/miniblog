@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login</title>
+    {% include 'common/head.html' %}
+</head>
+    <body>
+        <h1 class="my-5 text-center">Login</h1>
+        <div class="container mt-5 d-flex justify-content-center">
+            <form class="w-50" method="post">
+                <div class="form-floating mb-3">
+                    <input type="email" name="email" class="form-control" id="floatingInput">
+                    <label for="floatingInput">Email address</label>
+                </div>
+
+                <div class="form-floating">
+                    <input type="password" name="password" class="form-control" id="floatingPassword">
+                    <label for="floatingPassword">Password</label>
+                </div>
+
+                {% if error %}
+                    <p class=error><strong>Error:</strong> {{ error }}
+                {% endif %}
+
+                <button type="submit" class="btn btn-primary mt-4 w-100">Sign in</button>
+            </form>
+        </div>
+
+        {% include 'common/script.html' %}
+    </body>
+</html>
