@@ -42,6 +42,15 @@ def post(id: int):
     return render_template("post.html", post=post)
 
 
+@app.route('/about')
+def about_me():
+    about = {
+        "title": "About",
+        "content_html": parse_markdown(setting_service.get("about"))
+    }
+    return render_template("post.html", post=about)
+
+
 @app.route('/login', methods=["GET", "POST"])
 def login():
     error = None
