@@ -8,19 +8,20 @@
     {% include 'common/navbar.html' %}
 
         <div class="container mt-5">
-            <div class="row">
-                {% for post in posts %}
+            {% for post in posts %}
+            <div class="row border-bottom py-2">
                 <div class="col-9">
-                    <a href="/post/{{ post.id }}">{{ post.title }}</a>
+                    <h2><a class="text-black text-decoration-none" href="/post/{{ post.id }}">{{ post.title }}</a></h2>
                 </div>
-                    <div class="col-3">
+
+                <div class="d-flex col-3 align-middle text-secondary-emphasis" role="contentinfo">
                     {{ post.created_at|format_time }}
-                    </div>
-                {% endfor %}
+                </div>
             </div>
+            {% endfor %}
         </div>
 
-        <nav aria-label="Page navigation example">
+        <nav aria-label="Page navigation example" class="mt-5">
             <ul class="pagination justify-content-center">
                 <li class="page-item {% if page <= 1 %}disabled{% endif %}">
                     <a class="page-link" href="?page={{ page - 1 }}">Prev</a>
