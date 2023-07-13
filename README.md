@@ -12,7 +12,7 @@
     ```
 
 ## Login to admin dashboard
-1. Access [](http://localhost:5000)
+1. Access [http://localhost:5000](http://localhost:5000)
 2. Use email and password to login:
    - Email: `admin@admin.com`
    - Password: `123456`
