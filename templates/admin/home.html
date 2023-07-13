@@ -19,8 +19,9 @@
                 <thead>
                     <tr>
                         <th>Id</th>
-                        <th>title</th>
-                        <th>content</th>
+                        <th>Title</th>
+                        <th>Content</th>
+                        <th>Enabled?</th>
                         <th>Operation</th>
                     </tr>
                 </thead>
@@ -30,6 +31,13 @@
                         <td>{{ post.id }}</td>
                         <td>{{ post.title }}</td>
                         <td>{{ post.content }}</td>
+                        <td>
+                            {% if post.enabled == 0 %}
+                            <div class="badge bg-danger">No</div>
+                            {% else %}
+                            <div class="badge bg-success">Yes</div>
+                            {% endif %}
+                        </td>
                         <td>
                             <a href="/admin/posts/edit/{{ post.id }}">Edit</a>
                             <a href="/admin/posts/delete/{{ post.id }}">Delete</a>

@@ -72,11 +72,12 @@ def save_post():
     id = int(request.form["id"])
     title = request.form["title"]
     content = request.form["content"]
+    enabled = 1 if ("enabled" in request.form and request.form["enabled"] is not None) else 0
 
     if id:
-        post_service.update_post(id, title, content)
+        post_service.update_post(id, title, content, enabled)
     else:
-        id = post_service.add_post(title, content)
+        id = post_service.add_post(title, content, enabled)
 
     flash('Save successfully')
     return redirect(f"/admin/posts/edit/{id}")

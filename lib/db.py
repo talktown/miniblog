@@ -26,6 +26,7 @@ def create_tables():
             id integer not null primary key default 0,
             title text not null default '',
             content text not null default '',
+            enabled integer not null default 1,
             created_at integer not null default 0,
             updated_at integer not null default 0
         )

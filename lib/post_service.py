@@ -4,12 +4,12 @@ from lib.db import get_connection
 from datetime import datetime
 
 
-def add_post(title, content):
+def add_post(title, content, enabled):
     conn = get_connection()
     cursor = conn.cursor()
 
-    cursor.execute("INSERT INTO posts (title, content, created_at, updated_at) VALUES (?, ?, ?, ?)",
-                   (title, content, datetime.now(), datetime.now()))
+    cursor.execute("INSERT INTO posts (title, content, enabled, created_at, updated_at) VALUES (?, ?, ?, ?, ?)",
+                   (title, content, enabled, datetime.now(), datetime.now()))
     last_id = cursor.lastrowid
     conn.commit()
     cursor.close()
@@ -47,12 +47,12 @@ def get_posts(page, page_size) -> (List, int):
     return rows, total
 
 
-def update_post(id, title, content):
+def update_post(id, title, content, enabled):
     conn = get_connection()
     cursor = conn.cursor()
 
-    cursor.execute("UPDATE posts SET title=?, content=?, updated_at=? WHERE id=?",
-                   (title, content, datetime.now(), id))
+    cursor.execute("UPDATE posts SET title=?, content=?, enabled=?, updated_at=? WHERE id=?",
+                   (title, content, enabled, datetime.now(), id))
     conn.commit()
     cursor.close()
     conn.close()
