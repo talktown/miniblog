@@ -78,12 +78,15 @@ def save_post():
     else:
         id = post_service.add_post(title, content)
 
+    flash('Save successfully')
     return redirect(f"/admin/posts/edit/{id}")
 
 
 @app.route('/admin/posts/delete/<id>')
-def delete_post():
-    return 'Hello World!'
+def delete_post(id: int):
+    flash('Delete successfully')
+    post_service.delete_post(id)
+    return redirect("/admin")
 
 
 @app.route('/logout')
