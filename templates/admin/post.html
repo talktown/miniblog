@@ -3,6 +3,7 @@
 <head>
     <title>Login</title>
     {% include 'common/head.html' %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
 </head>
     <body>
         <h1 class="my-5 text-center">
@@ -25,7 +26,7 @@
                 <div class="row mb-3">
                     <label for="content" class="col-sm-2 col-form-label">Content</label>
                     <div class="col-sm-10">
-                        <textarea id="content" name="content" class="form-control">{{ post.content if post else ''}}</textarea>
+                        <textarea id="content" name="content" class="form-control" rows="20">{{ post.content if post else ''}}</textarea>
                     </div>
                 </div>
 
@@ -46,5 +47,10 @@
 
         {% include 'common/footer.html' %}
         {% include 'common/script.html' %}
+
+        <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+        <script>
+            var simplemde = new SimpleMDE({ element: document.getElementById("content") });
+        </script>
     </body>
 </html>
