@@ -6,12 +6,11 @@
 </head>
     <body>
         <h1 class="my-5 text-center">
-            {% if post %}
-                Edit Post
-            {% else %}
-                Add Post
+            {% if post %}Edit Post
+            {% else %}Add Post
             {% endif %}
         </h1>
+        <div class="container my-5">{% include 'common/message.html' %}</div>
 
         <div class="container mt-5 d-flex justify-content-center">
             <form class="w-100" method="post" action="/admin/posts/save">
