@@ -5,7 +5,7 @@ from flask import Flask, render_template, request, flash, redirect, url_for, ses
 from lib.authenticate import login_with_email
 from lib import post_service
 from lib.config import PAGE_SIZE
-from lib.utils import timestamp_to_date
+from lib.utils import format_timestamp, parse_markdown
 
 app = Flask(__name__)
 app.secret_key = 'JOU*(EUWE:JLJijdla'
@@ -13,7 +13,7 @@ app.secret_key = 'JOU*(EUWE:JLJijdla'
 
 @app.template_filter()
 def format_time(timestamp):
-    return timestamp_to_date(timestamp)
+    return format_timestamp(timestamp)
 
 
 @app.route('/')
@@ -31,7 +31,9 @@ def home():
 
 @app.route('/post/<id>')
 def post(id: int):
-    return 'Hello World!'
+    post = post_service.get_post(id)
+    post["content_html"] = parse_markdown(post["content"])
+    return render_template("post.html", post=post)
 
 
 @app.route('/login', methods=["GET", "POST"])
