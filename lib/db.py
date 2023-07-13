@@ -31,6 +31,22 @@ def create_tables():
             updated_at integer not null default 0
         )
     ''')
+
+    cursor.execute('''
+        create table if not exists setting(
+            id integer not null primary key default 0,
+            name text not null default '',
+            value text not null default '',
+            created_at integer not null default 0,
+            updated_at integer not null default 0
+        )
+    ''')
+
+    cursor.execute("INSERT OR IGNORE INTO setting (name, value) VALUES (?, ?)", ("site_name", "TalkTown"))
+    cursor.execute("INSERT OR IGNORE INTO setting (name, value) VALUES (?, ?)", ("admin_email", "admin@admin.com"))
+    cursor.execute("INSERT OR IGNORE INTO setting (name, value) VALUES (?, ?)", ("admin_password", "123456"))
+    cursor.execute("INSERT OR IGNORE INTO setting (name, value) VALUES (?, ?)", ("about", "This is about me page"))
+
     cursor.close()
     conn.close()
 

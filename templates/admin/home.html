@@ -22,6 +22,8 @@
                         <th>Title</th>
                         <th>Content</th>
                         <th>Enabled?</th>
+                        <th>Created</th>
+                        <th>Updated</th>
                         <th>Operation</th>
                     </tr>
                 </thead>
@@ -38,6 +40,8 @@
                             <div class="badge bg-success">Yes</div>
                             {% endif %}
                         </td>
+                        <td>{{ post.updated_at|format_time }}</td>
+                        <td>{{ post.created_at|format_time }}</td>
                         <td>
                             <a href="/admin/posts/edit/{{ post.id }}">Edit</a>
                             <a href="/admin/posts/delete/{{ post.id }}">Delete</a>

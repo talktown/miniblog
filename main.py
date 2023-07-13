@@ -4,15 +4,29 @@ from flask import Flask, render_template, request, flash, redirect, url_for, ses
 
 from lib.authenticate import login_with_email
 from lib import post_service
-from lib.config import ADMIN_PAGE_SIZE
+from lib.config import PAGE_SIZE
+from lib.utils import timestamp_to_date
 
 app = Flask(__name__)
 app.secret_key = 'JOU*(EUWE:JLJijdla'
 
 
+@app.template_filter()
+def format_time(timestamp):
+    return timestamp_to_date(timestamp)
+
+
 @app.route('/')
 def home():
-    return 'Hello World!'
+    page = int(request.args.get('page', 1))
+    posts, total = post_service.get_enabled_posts(page, PAGE_SIZE)
+    total_page = math.ceil(total / PAGE_SIZE)
+
+    return render_template("home.html",
+                           page=page,
+                           total_page=total_page,
+                           posts=posts,
+                           total=total)
 
 
 @app.route('/post/<id>')
@@ -43,8 +57,8 @@ def check_login():
 def get_posts():
     check_login()
     page = int(request.args.get('page', 1))
-    posts, total = post_service.get_posts(page, ADMIN_PAGE_SIZE)
-    total_page = math.ceil(total / ADMIN_PAGE_SIZE)
+    posts, total = post_service.get_posts(page, PAGE_SIZE)
+    total_page = math.ceil(total / PAGE_SIZE)
 
     return render_template("admin/home.html",
                            page=page,
