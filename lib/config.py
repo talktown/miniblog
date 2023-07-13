@@ -5,7 +5,3 @@ DATA_DIR = ROOT_DIR.joinpath("data")
 DB_PATH = DATA_DIR.joinpath('db.sqlite3')
 
 PAGE_SIZE = 10
-
-BLOG_NAME = "TalkTown"
-EMAIL = "a@a.com"
-PASSWORD = "123456"

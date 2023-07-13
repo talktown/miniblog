@@ -3,7 +3,7 @@ import math
 from flask import Flask, render_template, request, flash, redirect, url_for, session
 
 from lib.authenticate import login_with_email
-from lib import post_service
+from lib import post_service, setting_service
 from lib.config import PAGE_SIZE
 from lib.utils import format_timestamp, parse_markdown
 
@@ -14,6 +14,12 @@ app.secret_key = 'JOU*(EUWE:JLJijdla'
 @app.template_filter()
 def format_time(timestamp):
     return format_timestamp(timestamp)
+
+
+@app.context_processor
+def inject_global_variables():
+    site_name = setting_service.get("site_name")
+    return {"site_name": site_name}
 
 
 @app.route('/')

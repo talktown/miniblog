@@ -35,7 +35,7 @@ def create_tables():
     cursor.execute('''
         create table if not exists setting(
             id integer not null primary key default 0,
-            name text not null default '',
+            name text unique not null default '',
             value text not null default '',
             created_at integer not null default 0,
             updated_at integer not null default 0
@@ -47,6 +47,7 @@ def create_tables():
     cursor.execute("INSERT OR IGNORE INTO setting (name, value) VALUES (?, ?)", ("admin_password", "123456"))
     cursor.execute("INSERT OR IGNORE INTO setting (name, value) VALUES (?, ?)", ("about", "This is about me page"))
 
+    conn.commit()
     cursor.close()
     conn.close()
 
