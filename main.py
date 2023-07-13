@@ -5,10 +5,11 @@ from flask import Flask, render_template, request, flash, redirect, url_for, ses
 from lib.authenticate import login_with_email
 from lib import post_service, setting_service
 from lib.config import PAGE_SIZE
-from lib.utils import format_timestamp, parse_markdown
+from lib.utils import format_timestamp, parse_markdown, init_database
 
 app = Flask(__name__)
 app.secret_key = 'JOU*(EUWE:JLJijdla'
+init_database()
 
 
 @app.template_filter()
