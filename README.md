@@ -16,3 +16,7 @@
 2. Use email and password to login:
    - Email: `admin@admin.com`
    - Password: `123456`
+
+
+## Refer
+- Template: [https://jamstackthemes.dev/demo/theme/brook/](https://jamstackthemes.dev/demo/theme/brook/)
